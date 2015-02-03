@@ -6,12 +6,12 @@ namespace JwtAuthentication.WebApp.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "email")]
+        [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "password")]
+        [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
