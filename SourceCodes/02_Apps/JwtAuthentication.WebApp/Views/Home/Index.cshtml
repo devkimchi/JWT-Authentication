@@ -1,0 +1,42 @@
+﻿@model JwtAuthentication.WebApp.Models.LoginViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        @using (Html.BeginForm(MVC.Home.ActionNames.Index, MVC.Home.Name, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" })
+                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" })
+                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-10 col-md-offset-2 col-md-10 col-lg-offset-2 col-lg-10">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-10 col-md-offset-2 col-md-10 col-lg-offset-2 col-lg-10">
+                    <input class="btn btn-default" type="submit" value="Log in">
+                </div>
+            </div>
+        }
+    </div>
+</div>
