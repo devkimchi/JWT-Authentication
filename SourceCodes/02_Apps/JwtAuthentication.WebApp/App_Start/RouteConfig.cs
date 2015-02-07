@@ -12,7 +12,9 @@ namespace JwtAuthentication.WebApp
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+#if DEBUG
+            routes.IgnoreRoute("{*browserlink}", new { browserlink = @".*__browserLink.*" });
+#endif
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
