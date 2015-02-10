@@ -96,13 +96,34 @@ namespace Links
              
     }
 
+    
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Bundles
     {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static partial class Scripts {}
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public static partial class Styles {}
+        public static partial class Scripts 
+        {
+            public static class Assets
+            {
+                public const string bootstrap_js = "~/Scripts/bootstrap.js"; 
+                public const string bootstrap_min_js = "~/Scripts/bootstrap.min.js"; 
+                public const string jquery_2_1_3_intellisense_js = "~/Scripts/jquery-2.1.3.intellisense.js"; 
+                public const string jquery_2_1_3_js = "~/Scripts/jquery-2.1.3.js"; 
+                public const string jquery_2_1_3_min_js = "~/Scripts/jquery-2.1.3.min.js"; 
+                public const string modernizr_2_8_3_js = "~/Scripts/modernizr-2.8.3.js"; 
+                public const string npm_js = "~/Scripts/npm.js"; 
+            }
+        }
+        public static partial class Content 
+        {
+            public static class Assets
+            {
+                public const string bootstrap_theme_css = "~/Content/bootstrap-theme.css";
+                public const string bootstrap_theme_min_css = "~/Content/bootstrap-theme.min.css";
+                public const string bootstrap_css = "~/Content/bootstrap.css";
+                public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
+                public const string Site_css = "~/Content/Site.css";
+            }
+        }
     }
 }
 
