@@ -7,9 +7,6 @@ using System.Web.Security;
 
 namespace JwtAuthentication.WebApp
 {
-    using System.Linq;
-    using System.Security.Principal;
-
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
