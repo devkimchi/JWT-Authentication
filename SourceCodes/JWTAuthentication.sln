@@ -17,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Models", "04_Models", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99_Tests", "99_Tests", "{04D2A5D2-E714-495C-9D5D-47A522DB40E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthentication.WebAppMVC", "02_Apps\JwtAuthentication.WebAppMVC\JwtAuthentication.WebAppMVC.csproj", "{7718D2C1-5F0A-47C4-A098-876437CB3653}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthentication.WebApp", "02_Apps\JwtAuthentication.WebApp\JwtAuthentication.WebApp.csproj", "{9B0647DE-7790-428B-BEAE-D739768D8447}"
 EndProject
 Global
@@ -27,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7718D2C1-5F0A-47C4-A098-876437CB3653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7718D2C1-5F0A-47C4-A098-876437CB3653}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7718D2C1-5F0A-47C4-A098-876437CB3653}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7718D2C1-5F0A-47C4-A098-876437CB3653}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B0647DE-7790-428B-BEAE-D739768D8447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B0647DE-7790-428B-BEAE-D739768D8447}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B0647DE-7790-428B-BEAE-D739768D8447}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,7 +35,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3E16E678-C306-45D7-9331-E4842E1E8979} = {C0E3C1D4-578C-4A65-826A-AEEF2D77DC96}
-		{7718D2C1-5F0A-47C4-A098-876437CB3653} = {CF392A32-4984-4535-89A8-D3863B93907A}
 		{9B0647DE-7790-428B-BEAE-D739768D8447} = {CF392A32-4984-4535-89A8-D3863B93907A}
 	EndGlobalSection
 EndGlobal

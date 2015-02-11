@@ -37,6 +37,7 @@ namespace JwtAuthentication.WebApp.Controllers
             return RedirectToAction(validated ? "MyProfile" : "Index");
         }
 
+        //[Authorize(Roles = "Admin")]
         public virtual async Task<ActionResult> MyProfile()
         {
             var vm = new MyProfileViewModel() { Name = User.Identity.Name };
@@ -65,23 +66,23 @@ namespace JwtAuthentication.WebApp.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
             var symmetricKey = GetBytes("ThisIsAnImportantStringAndIHaveNoIdeaIfThisIsVerySecureOrNot!");
             var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                                                                       {
-                                                                           new Claim(ClaimTypes.Name, "DevKimchi"),
-                                                                           new Claim(ClaimTypes.Role, "User"),
-                                                                       }),
-                TokenIssuerName = "http://devkimchi.com",
-                AppliesToAddress = "http://jwt-sample.com",
-                Lifetime = new Lifetime(now, now.AddMinutes(30)),
-                SigningCredentials = new SigningCredentials(new InMemorySymmetricSecurityKey(symmetricKey),
-                                                            "http://www.w3.org/2001/04/xmldsig-more#hmac-sha256",
-                                                            "http://www.w3.org/2001/04/xmlenc#sha256"),
-            };
+                                      {
+                                          Subject = new ClaimsIdentity(new Claim[]
+                                                                           {
+                                                                               new Claim(ClaimTypes.Name, "DevKimchi"),
+                                                                               new Claim(ClaimTypes.Role, "User"),
+                                                                           }),
+                                          TokenIssuerName = "http://devkimchi.com",
+                                          AppliesToAddress = "http://jwt-sample.com",
+                                          Lifetime = new Lifetime(now, now.AddMinutes(30)),
+                                          SigningCredentials = new SigningCredentials(new InMemorySymmetricSecurityKey(symmetricKey),
+                                                                                      "http://www.w3.org/2001/04/xmldsig-more#hmac-sha256",
+                                                                                      "http://www.w3.org/2001/04/xmlenc#sha256"),
+                                      };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            HttpCookie cookie = null;
+            var cookie = new HttpCookie(".JWTAUTH", tokenString) { HttpOnly = true, };
             if (loginType == "form")
             {
                 // http://stackoverflow.com/questions/7217105/asp-net-how-can-i-manually-create-a-authentication-cookie-instead-of-the-defau
@@ -100,23 +101,10 @@ namespace JwtAuthentication.WebApp.Controllers
                 var encryptedTicket = FormsAuthentication.Encrypt(ticket);
 
                 // Add the cookie to the request to save it
-                cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
-                {
-                    HttpOnly = true,
-                };
-            }
-            else if (loginType == "jwt")
-            {
-                cookie = new HttpCookie(".JWTAUTH", tokenString)
-                {
-                    HttpOnly = true,
-                };
+                cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket) { HttpOnly = true, };
             }
 
-            if (cookie != null)
-            {
-                Response.Cookies.Add(cookie);
-            }
+            Response.Cookies.Add(cookie);
 
             return true;
         }
