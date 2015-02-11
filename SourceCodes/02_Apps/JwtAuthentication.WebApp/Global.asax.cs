@@ -19,17 +19,29 @@ namespace JwtAuthentication.WebApp
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
             var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie == null)
+            var jwtCookie = Request.Cookies[".JWTAUTH"];
+
+            string userData;
+            if (authCookie != null)
+            {
+                //Extract the forms authentication cookie
+                var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket == null)
+                {
+                    return;
+                }
+
+                userData = authTicket.UserData;
+            }
+            else if (jwtCookie != null)
+            {
+                userData = jwtCookie.Value;
+            }
+            else
             {
                 return;
             }
 
-            //Extract the forms authentication cookie
-            var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-            if (authTicket == null)
-            {
-                return;
-            }
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var symmetricKey = GetBytes("ThisIsAnImportantStringAndIHaveNoIdeaIfThisIsVerySecureOrNot!");
@@ -42,7 +54,7 @@ namespace JwtAuthentication.WebApp
                                        };
 
             SecurityToken securityToken;
-            var principal = tokenHandler.ValidateToken(authTicket.UserData, validationParameters, out securityToken);
+            var principal = tokenHandler.ValidateToken(userData, validationParameters, out securityToken);
 
             // Set the context user
             Context.User = principal;

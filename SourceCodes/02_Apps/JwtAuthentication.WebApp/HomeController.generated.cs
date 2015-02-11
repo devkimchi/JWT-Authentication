@@ -60,9 +60,16 @@ namespace JwtAuthentication.WebApp.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Login()
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> LoginForm()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginForm);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> LoginJwt()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginJwt);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
@@ -82,7 +89,8 @@ namespace JwtAuthentication.WebApp.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Login = "Login";
+            public readonly string LoginForm = "LoginForm";
+            public readonly string LoginJwt = "LoginJwt";
             public readonly string MyProfile = "MyProfile";
         }
 
@@ -90,16 +98,25 @@ namespace JwtAuthentication.WebApp.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Login = "Login";
+            public const string LoginForm = "LoginForm";
+            public const string LoginJwt = "LoginJwt";
             public const string MyProfile = "MyProfile";
         }
 
 
-        static readonly ActionParamsClass_Login s_params_Login = new ActionParamsClass_Login();
+        static readonly ActionParamsClass_LoginForm s_params_LoginForm = new ActionParamsClass_LoginForm();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Login LoginParams { get { return s_params_Login; } }
+        public ActionParamsClass_LoginForm LoginFormParams { get { return s_params_LoginForm; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Login
+        public class ActionParamsClass_LoginForm
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_LoginJwt s_params_LoginJwt = new ActionParamsClass_LoginJwt();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LoginJwt LoginJwtParams { get { return s_params_LoginJwt; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LoginJwt
         {
             public readonly string model = "model";
         }
@@ -138,14 +155,26 @@ namespace JwtAuthentication.WebApp.Controllers
         }
 
         [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, JwtAuthentication.WebApp.Models.LoginViewModel model);
+        partial void LoginFormOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, JwtAuthentication.WebApp.Models.LoginViewModel model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Login(JwtAuthentication.WebApp.Models.LoginViewModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> LoginForm(JwtAuthentication.WebApp.Models.LoginViewModel model)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginForm);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            LoginOverride(callInfo, model);
+            LoginFormOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        [NonAction]
+        partial void LoginJwtOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, JwtAuthentication.WebApp.Models.LoginViewModel model);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> LoginJwt(JwtAuthentication.WebApp.Models.LoginViewModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginJwt);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            LoginJwtOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
